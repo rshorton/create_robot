@@ -127,7 +127,7 @@ controller_server:
       min_vel_y: 0.0
       max_vel_x: 0.26 #0.4 #0.26
       max_vel_y: 0.0
-      max_vel_theta: 0.3 #0.6 #0.3
+      max_vel_theta: 0.6 #0.3 #0.6 #0.3
       min_speed_xy: 0.0
       max_speed_xy: 0.26 #0.4 #0.16
       min_speed_theta: 0.3 #0.2 #0.0
@@ -135,7 +135,7 @@ controller_server:
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
       acc_lim_x: 0.05 #0.1 #2.5
       acc_lim_y: 0.0
-      acc_lim_theta: 2.5 #3.2
+      acc_lim_theta: 6.0 #2.5 #3.2
       decel_lim_x: -2.5 #-1.0 #-2.5
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
@@ -312,7 +312,7 @@ waypoint_follower:
   ros__parameters:
     loop_rate: 20
     stop_on_failure: false
-    waypoint_task_executor_plugin: "wait_at_waypoint"   
+    waypoint_task_executor_plugin: "wait_at_waypoint"
     wait_at_waypoint:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: True
