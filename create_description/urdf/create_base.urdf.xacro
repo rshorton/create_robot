@@ -184,7 +184,7 @@
     </joint>
 
     <joint name="base_laser_joint" type="fixed">
-      <origin xyz="0.127 0 0" rpy="0 0 -1.57" />
+      <origin xyz="0.127 0 0" rpy="0 0 1.57" />
       <parent link="base_link" />
       <child link="laser" />
     </joint>
@@ -196,7 +196,7 @@
     </joint>
 
     <joint name="cam_pan_joint" type="revolute">
-      <origin xyz="0.080 0.0 0.55" rpy="0 0 0" />
+      <origin xyz="0.0 0.0 0.565" rpy="0 0 0" />
       <axis xyz="0 0 1"/>
       <limit upper="1.57" lower="-1.57" effort="10" velocity="10"/>
       <parent link="base_link" />
@@ -228,7 +228,7 @@
     </link>
 
     <joint name="oakd_base" type="fixed">
-      <origin xyz="0.055 0 0.028" rpy="0 0 0" />
+      <origin xyz="0.095 0 0.028" rpy="0 0 0" />
       <parent link="cam_tilt_to_oakd_base" />
       <child link="oakd" />
     </joint>
