@@ -2,8 +2,18 @@
 <robot name="create_2" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find create_description)/urdf/create_base.urdf.xacro" />
   <xacro:include filename="$(find create_description)/urdf/create_2_gazebo.urdf.xacro" />
+  <xacro:include filename="$(find xarm_description)/urdf/xarm.urdf"/>
 
   <xacro:create_base wheel_separation="0.235" base_diameter="0.3485">
     <mesh filename="package://create_description/meshes/create_2.dae" />
   </xacro:create_base>
+  
+  <xacro:property name="PI" value="3.1415926535897931" />
+
+  <joint name="xarm_base_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="xarm_base_link"/>
+        <origin xyz="0.095 0.0 0.175" rpy="0.0 0.0 ${PI/2}"/>
+  </joint>
+
 </robot>
