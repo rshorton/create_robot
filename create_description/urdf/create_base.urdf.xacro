@@ -124,15 +124,37 @@
     </inertial>
     </link>
 
-    <link name="camera">
-    <inertial>
-      <mass value="0.01" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
-    </inertial>
+    <link name="oakd_center_camera">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.055 0.30 0.0"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.025 0.110 0.015" />
+        </geometry>
+        <material name="Black" />
+      </visual>
     </link>
 
-    <link name="oakd">
+    <link name="oakd_left_camera">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0.055 0.30 0.0"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.025 0.110 0.015" />
+        </geometry>
+        <material name="Black" />
+      </visual>
+    </link>
+
+    <link name="oakd_right_camera">
       <inertial>
         <mass value="0.01" />
         <origin xyz="0.055 0.30 0.0"/>
@@ -211,56 +233,6 @@
       <child link="rightfront_cliff_sensor_link" />
     </joint>
 
-    <joint name="base_laser_joint" type="fixed">
-      <origin xyz="0.127 0 0" rpy="0 0 3.14" />
-      <parent link="base_link" />
-      <child link="laser" />
-    </joint>
-
-    <joint name="base_camera_joint" type="fixed">
-      <origin xyz="0.088 -0.008 0.188" rpy="0 0.35 0" />
-      <parent link="base_link" />
-      <child link="camera" />
-    </joint>
-
-    <joint name="cam_pan_joint" type="revolute">
-      <origin xyz="0.0 0.0 0.630" rpy="0 0 0" />
-      <axis xyz="0 0 1"/>
-      <limit upper="1.57" lower="-1.57" effort="10" velocity="10"/>
-      <parent link="base_link" />
-      <child link="cam_pan_to_tilt" />
-    </joint>
-
-    <link name="cam_pan_to_tilt">
-    <inertial>
-      <mass value="0.01" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
-    </inertial>
-    </link>
-
-    <joint name="cam_tilt_joint" type="revolute">
-      <origin xyz="0.0 0.0 0.053" rpy="0 0 0" />
-      <axis xyz="0 1 0"/>
-      <limit upper="1.57" lower="-1.57" effort="10" velocity="10"/>
-      <parent link="cam_pan_to_tilt" />
-      <child link="cam_tilt_to_oakd_base" />
-    </joint>
-
-    <link name="cam_tilt_to_oakd_base">
-    <inertial>
-      <mass value="0.01" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
-    </inertial>
-    </link>
-
-    <joint name="oakd_base" type="fixed">
-      <origin xyz="0.105 0 0.045" rpy="0 0 0" />
-      <parent link="cam_tilt_to_oakd_base" />
-      <child link="oakd" />
-    </joint>
-
     <xacro:create_wheel prefix="left" y_offset="${wheel_separation / 2}" wheel_radius="${wheel_radius}" wheel_width="${wheel_width}"/>
     <xacro:create_wheel prefix="right" y_offset="${wheel_separation / -2}" wheel_radius="${wheel_radius}" wheel_width="${wheel_width}"/>
 
@@ -308,7 +280,75 @@
     </inertial>
     </link>
 
+    <joint name="base_laser_joint" type="fixed">
+      <origin xyz="0.127 0 0" rpy="0 0 3.14" />
+      <parent link="base_link" />
+      <child link="laser" />
+    </joint>
 
+    <joint name="cam_pan_joint" type="revolute">
+      <origin xyz="0.0 0.0 0.633" rpy="0 0 0" />
+      <axis xyz="0 0 1"/>
+      <limit upper="1.57" lower="-1.57" effort="10" velocity="10"/>
+      <parent link="base_link" />
+      <child link="cam_pan_to_tilt_link" />
+    </joint>
+
+    <link name="cam_pan_to_tilt_link">
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+    </link>
+
+    <joint name="cam_tilt_joint" type="revolute">
+      <origin xyz="0.0077 0.0 0.021" rpy="0 0 0" />
+      <axis xyz="0 1 0"/>
+      <limit upper="1.57" lower="-1.57" effort="10" velocity="10"/>
+      <parent link="cam_pan_to_tilt_link" />
+      <child link="cam_tilt_to_oakd_base_link" />
+    </joint>
+
+    <link name="cam_tilt_to_oakd_base_link">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+      </inertial>
+    </link>
+
+    <joint name="oakd_base_joint" type="fixed">
+      <origin xyz="0.083 0 0.063" rpy="0 0 0" />
+      <parent link="cam_tilt_to_oakd_base_link" />
+      <child link="oakd_base_link" />
+    </joint>
+
+    <link name="oakd_base_link">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+      </inertial>
+    </link>
+
+    <joint name="oakd_center_camera_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="oakd_base_link" />
+      <child link="oakd_center_camera" />
+    </joint>
+
+    <joint name="oakd_left_camera_joint" type="fixed">
+      <origin xyz="0 0.0375 0" rpy="0 0 0" />
+      <parent link="oakd_base_link" />
+      <child link="oakd_left_camera" />
+    </joint>
+
+    <joint name="oakd_right_camera_joint" type="fixed">
+      <origin xyz="0 -0.0375 0" rpy="0 0 0" />
+      <parent link="oakd_base_link" />
+      <child link="oakd_right_camera" />
+    </joint>
 
     <!-- Simulation sensors -->
     <xacro:sim_create_base/>
