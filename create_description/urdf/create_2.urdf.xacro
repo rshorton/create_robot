@@ -10,6 +10,9 @@
   
   <xacro:property name="PI" value="3.1415926535897931" />
 
+  <!--xacro:property name="eef" value="eef_2_finger"/-->
+  <xacro:property name="eef" value="eef_3_finger"/>
+
   <joint name="xarm_base_joint" type="fixed">
         <parent link="base_footprint"/>
         <child link="xarm_base_link"/>
