@@ -137,6 +137,12 @@
         </geometry>
         <material name="Black" />
       </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.025 0.110 0.015" />
+        </geometry>
+      </collision>
     </link>
 
     <link name="oakd_left_camera">
@@ -152,6 +158,12 @@
         </geometry>
         <material name="Black" />
       </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.025 0.110 0.015" />
+        </geometry>
+      </collision>
     </link>
 
     <link name="oakd_right_camera">
@@ -167,6 +179,12 @@
         </geometry>
         <material name="Black" />
       </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.025 0.110 0.015" />
+        </geometry>
+      </collision>
     </link>
 
     <link name="vertical_body">
