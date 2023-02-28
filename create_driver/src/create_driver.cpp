@@ -27,7 +27,7 @@ POSSIBILITY OF SUCH DAMAGE.
 */
 #include "create_driver/create_driver.h"
 
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
 #include <string>
 using std::placeholders::_1;
@@ -341,7 +341,7 @@ bool CreateDriver::update()
 #endif
   // last time is inited to system clock type
   if (last_cmd_vel_time_.get_clock_type() == RCL_SYSTEM_TIME ||
-		  node_->now() - last_cmd_vel_time_ >= rclcpp::Duration(latch_duration_))
+		  node_->now() - last_cmd_vel_time_ >= rclcpp::Duration(std::chrono::duration<double>(latch_duration_)))
   {
 //	  RCLCPP_INFO(node_->get_logger(), "drive");
 //    robot_->drive(0, 0);
